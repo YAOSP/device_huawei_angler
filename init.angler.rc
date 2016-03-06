@@ -474,3 +474,9 @@ service diag_test_server /vendor/bin/diag_test_server
 on property:ro.boot.mode=hw-factory
     start diag_test_server
 
+# Execute init.d scripts
+service sysinit /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc/init.d
+    class late_start
+    user root
+    group shell
+    oneshot
